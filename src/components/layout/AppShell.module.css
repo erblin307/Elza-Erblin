@@ -1,0 +1,24 @@
+.app { min-height: 100vh; }
+.rail { position: fixed; inset: 0 auto 0 0; z-index: 10; width: var(--rail-width); display: flex; flex-direction: column; align-items: center; padding: var(--space-4) 10px var(--space-3); background: var(--surface-primary); border-right: 1px solid var(--border-default); }
+.brandLink { display: grid; place-items: center; width: 46px; height: 46px; color: var(--accent-primary); text-decoration: none; }
+.desktopNav { display: flex; flex: 1; flex-direction: column; gap: var(--space-2); width: 100%; padding-top: var(--space-8); }
+.navItem { position: relative; display: flex; flex-direction: column; align-items: center; gap: 5px; min-height: 54px; padding: 8px 2px; color: var(--text-secondary); border-radius: var(--radius-md); text-decoration: none; font-size: 10px; font-weight: 600; text-align: center; }
+.navItem:hover { color: var(--text-primary); background: var(--surface-secondary); }
+.navItem.active { color: var(--accent-primary); background: var(--accent-soft); }
+.navItem.active::before { content: ''; position: absolute; left: -10px; top: 13px; bottom: 13px; width: 3px; border-radius: 0 3px 3px 0; background: var(--accent-primary); }
+.desktopTheme { padding-top: var(--space-3); border-top: 1px solid var(--border-default); }
+.themeControl { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-secondary); }
+.themeControl select { width: 50px; border: 0; background: transparent; color: var(--text-secondary); font-size: 9px; font-weight: 600; text-align: center; cursor: pointer; appearance: none; }
+.main { min-height: 100vh; margin-left: var(--rail-width); }
+.mobileHeader, .mobileNav { display: none; }
+
+@media (max-width: 720px) {
+  .rail { display: none; }
+  .main { min-height: 100dvh; margin-left: 0; padding-top: 61px; padding-bottom: 68px; }
+  .mobileHeader { position: fixed; inset: 0 0 auto; z-index: 10; height: 61px; display: flex; align-items: center; justify-content: space-between; padding: 0 var(--space-4); background: color-mix(in srgb, var(--surface-primary) 94%, transparent); border-bottom: 1px solid var(--border-default); backdrop-filter: blur(12px); }
+  .mobileHeader .themeControl { flex-direction: row; gap: 6px; }
+  .mobileHeader .themeControl select { width: 52px; font-size: 10px; }
+  .mobileNav { position: fixed; inset: auto 0 0; z-index: 10; min-height: 64px; display: grid; grid-template-columns: repeat(3, 1fr); background: color-mix(in srgb, var(--surface-primary) 96%, transparent); border-top: 1px solid var(--border-default); backdrop-filter: blur(12px); padding-bottom: env(safe-area-inset-bottom); }
+  .mobileNavItem { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--text-secondary); text-decoration: none; font-size: 10px; font-weight: 600; }
+  .mobileNavItem.active { color: var(--accent-primary); }
+}

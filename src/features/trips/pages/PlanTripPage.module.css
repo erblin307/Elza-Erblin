@@ -1,0 +1,26 @@
+.layout { display: grid; grid-template-columns: minmax(0, 720px) minmax(190px, 260px); align-items: start; gap: clamp(28px, 5vw, 56px); }
+.form { display: flex; flex-direction: column; gap: var(--space-8); }
+.section { padding-bottom: var(--space-8); border-bottom: 1px solid var(--border-default); }
+.sectionHeading { display: flex; gap: var(--space-3); margin-bottom: var(--space-5); }
+.sectionHeading > span { width: 26px; height: 26px; display: grid; place-items: center; color: var(--accent-primary); background: var(--accent-soft); border-radius: var(--radius-sm); font-size: 11px; font-weight: 750; }
+.sectionHeading h2 { margin: 1px 0 0; font-size: 17px; letter-spacing: -.015em; }
+.sectionHeading p { margin: 4px 0 0; color: var(--text-secondary); font-size: 13px; }
+.routeFields { display: grid; grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr); align-items: start; gap: var(--space-3); }
+.routeArrow { margin-top: 36px; color: var(--text-tertiary); }
+.twoColumns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+.detailGrid { display: grid; grid-template-columns: 1fr 1.5fr .8fr; gap: var(--space-4); }
+.field { display: flex; flex-direction: column; gap: 7px; color: var(--text-secondary); font-size: 12px; font-weight: 650; }
+.field input, .field select { width: 100%; min-height: 42px; padding: 9px 11px; color: var(--text-primary); background: var(--surface-primary); border: 1px solid var(--border-default); border-radius: var(--radius-md); font-size: 14px; font-weight: 450; }
+.field input:hover, .field select:hover { border-color: var(--border-strong); }
+.field input:focus, .field select:focus { border-color: var(--accent-primary); outline: 3px solid color-mix(in srgb, var(--focus-ring) 24%, transparent); }
+.field input[aria-invalid='true'], .field select[aria-invalid='true'] { border-color: var(--danger); }
+.inputWrap { position: relative; }
+.inputWrap svg { position: absolute; left: 11px; top: 13px; color: var(--text-tertiary); }
+.inputWrap input { padding-left: 35px; }
+.error { color: var(--danger); font-size: 12px; font-weight: 500; line-height: 1.35; }
+.actions { display: flex; justify-content: flex-end; }
+.note { padding: var(--space-4); color: var(--text-secondary); background: var(--surface-secondary); border-left: 3px solid var(--accent-primary); border-radius: 0 var(--radius-md) var(--radius-md) 0; font-size: 12px; line-height: 1.55; }
+.note strong { color: var(--text-primary); }
+.note p { margin: 5px 0 0; }
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } .note { grid-row: 1; } }
+@media (max-width: 560px) { .routeFields, .twoColumns, .detailGrid { grid-template-columns: 1fr; } .routeArrow { display: none; } .form { gap: var(--space-6); } .section { padding-bottom: var(--space-6); } }
