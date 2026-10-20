@@ -14,7 +14,7 @@
   transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
 }
 .button:disabled { opacity: .55; cursor: not-allowed; }
-.primary { color: white; background: var(--accent-primary); }
+.primary { color: var(--text-on-accent); background: var(--accent-primary); }
 .primary:hover:not(:disabled) { background: var(--accent-hover); }
 .secondary { color: var(--text-primary); background: var(--surface-primary); border-color: var(--border-default); }
 .secondary:hover:not(:disabled), .ghost:hover:not(:disabled) { background: var(--surface-secondary); border-color: var(--border-strong); }

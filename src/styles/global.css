@@ -16,6 +16,7 @@
   --accent-primary: #16766a;
   --accent-hover: #105f56;
   --accent-soft: #e7f3f0;
+  --text-on-accent: #ffffff;
   --danger: #b42318;
   --danger-hover: #8f1c13;
   --danger-soft: #fff0ed;
@@ -52,6 +53,7 @@
   --accent-primary: #4cb8a3;
   --accent-hover: #68c8b5;
   --accent-soft: #173d35;
+  --text-on-accent: #101513;
   --danger: #ff8a80;
   --danger-hover: #ffaaa2;
   --danger-soft: #3d201d;

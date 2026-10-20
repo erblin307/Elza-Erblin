@@ -16,6 +16,8 @@ The Route Frame mark combines an open geometric frame with a two-node route. It 
 
 Components consume semantic tokens from `src/styles/global.css`, never theme-specific literals. Core tokens include application and surface backgrounds, primary/secondary text, default/strong borders, accent states, danger states, focus ring, and overlay. Light, Dark, and System preferences share one component tree. The preference is persisted locally and applied before React starts to avoid an incorrect-theme flash.
 
+Use `--text-on-accent` for primary-action labels: light text on the dark Light-theme accent and dark text on the pale Dark-theme accent. This preserves readable contrast across shared buttons and links.
+
 ## Typography and spacing
 
 Use Inter, Geist, or the system sans-serif stack. Page headings are 24–40px depending on context, section headings 17–22px, body copy 13–15px, and metadata 10–12px. Use the 4px-derived spacing scale: 4, 8, 12, 16, 20, 24, 32, 40, and 48px. Inputs and buttons use 6–8px radii; panels use 8–10px.

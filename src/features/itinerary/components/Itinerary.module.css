@@ -1,0 +1,71 @@
+.page { max-width: 940px; }
+.selectedActivity { background: var(--accent-soft); }
+.mapLink { display: inline-block; color: var(--accent-primary); font-size: 12px; padding: 10px 0 0; text-underline-offset: 3px; }
+.pageHeading { margin-bottom: var(--space-6); }
+.pageHeading h2 { margin: 0; font-size: 20px; letter-spacing: -.025em; }
+.pageHeading p, .helper { color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
+.pageHeading p { margin: 6px 0 0; }
+.generationControls { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(130px, 1fr) auto; gap: var(--space-3); align-items: end; }
+.generationControls label, .moveControls label, .addPanel label { display: flex; flex-direction: column; gap: 7px; font-size: 12px; font-weight: 600; color: var(--text-secondary); min-width: 0; }
+.generationControls input, .generationControls select, .moveControls select, .addPanel select { min-width: 0; width: 100%; min-height: 40px; padding: 9px 10px; border: 1px solid var(--border-default); border-radius: var(--radius-md); color: var(--text-primary); background: var(--surface-primary); font: inherit; font-size: 13px; }
+.generationControls button { min-height: 40px; }
+.helper { margin: 12px 0; }
+.sourceNotice { color: var(--text-secondary); font-size: 12px; line-height: 1.6; padding: 12px 0; border-top: 1px solid var(--border-default); border-bottom: 1px solid var(--border-default); }
+.notice { margin: 16px 0; padding: 12px 16px; background: var(--surface-secondary); border-left: 3px solid var(--accent-primary); font-size: 13px; line-height: 1.6; }
+.notice strong { display: block; }
+.feedback { color: var(--accent-primary); font-size: 13px; }
+.error { margin: 16px 0; }
+.planSummary { display: flex; flex-direction: column; gap: 7px; margin: var(--space-6) 0 var(--space-4); font-size: 13px; }
+.planSummary strong { font-size: 15px; }
+.planSummary span, .planSummary small { color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
+.assumptions { font-size: 12px; color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-5); }
+.assumptions summary { cursor: pointer; font-weight: 600; }
+.assumptions ul { padding-left: 20px; }
+.dayNavigation { display: flex; gap: 6px; max-width: 100%; overflow-x: auto; padding: 4px 2px 12px; margin-bottom: var(--space-5); scrollbar-width: thin; border-bottom: 1px solid var(--border-default); }
+.dayNavigation button { flex: 0 0 auto; min-height: 36px; padding: 8px 12px; border: 1px solid transparent; border-radius: var(--radius-sm); background: transparent; color: var(--text-secondary); font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
+.dayNavigation button[aria-pressed='true'] { color: var(--accent-primary); background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent-primary) 25%, transparent); }
+.dayNavigation button:hover { background: var(--surface-secondary); }
+.dayHeader { margin-bottom: var(--space-6); }
+.dayHeader h3 { margin: 0; font-size: 16px; line-height: 1.5; }
+.dayHeader p { font-size: 12px; line-height: 1.6; margin: 6px 0 0; color: var(--text-secondary); }
+.dayHeader .caution { color: var(--accent-primary); }
+.timeline { list-style: none; padding: 0; margin: 0; }
+.activityRow, .breakRow { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: var(--space-4); padding-bottom: var(--space-6); }
+.time { font-size: 13px; font-weight: 650; color: var(--text-secondary); font-variant-numeric: tabular-nums; padding-top: 4px; }
+.time small { display: block; font-size: 10px; font-weight: 450; margin-top: 4px; }
+.activityBody { position: relative; padding: 0 0 12px 20px; border-left: 1px solid var(--border-strong); min-width: 0; }
+.activityBody::before { content: ''; position: absolute; top: 9px; left: -4px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent-primary); }
+.position { display: block; font-size: 10px; font-weight: 650; color: var(--text-secondary); margin: 0 0 5px; }
+.activityName { display: block; padding: 0; border: 0; color: var(--text-primary); background: transparent; font: inherit; font-size: 15px; font-weight: 650; line-height: 1.5; text-align: left; cursor: pointer; overflow-wrap: anywhere; }
+.activityName:hover { color: var(--accent-primary); text-decoration: underline; text-underline-offset: 3px; }
+.activityMeta { margin: 6px 0 0; color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
+.explanation { color: var(--accent-primary); font-size: 12px; line-height: 1.6; margin: 8px 0 0; }
+.actionsMenu { margin-top: 12px; font-size: 12px; color: var(--text-secondary); }
+.actionsMenu summary, .addPanel summary { cursor: pointer; font-weight: 600; }
+.actionControls { margin-top: 12px; display: flex; flex-direction: column; gap: 12px; }
+.actionButtons { display: flex; flex-wrap: wrap; gap: 6px; }
+.actionButtons button { font-size: 12px; }
+.moveControls { display: flex; align-items: end; gap: 8px; max-width: 420px; }
+.moveControls label { flex: 1; }
+.moveControls button { flex-shrink: 0; font-size: 12px; }
+.breakRow > div { padding-left: 20px; border-left: 1px dashed var(--border-default); }
+.breakLabel { display: block; padding-top: 4px; font-size: 13px; color: var(--text-secondary); }
+.breakRow p { font-size: 11px; color: var(--text-secondary); margin-top: 7px; line-height: 1.6; }
+.freeDay { color: var(--text-secondary); line-height: 1.6; font-size: 13px; padding: 16px 0 24px; }
+.addPanel { padding: 16px 0; border-top: 1px solid var(--border-default); font-size: 13px; }
+.addPanel form { display: flex; align-items: end; gap: 12px; margin-top: 16px; }
+.addPanel label { flex: 1; }
+.addPanel p { color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
+.empty { min-height: 180px; padding-top: 36px; border-top: 1px solid var(--border-default); margin-top: 24px; }
+.empty h3 { font-size: 18px; margin: 0; letter-spacing: -.02em; }
+.empty p { max-width: 530px; color: var(--text-secondary); font-size: 13px; line-height: 1.7; }
+.dialog { width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 40px); overflow: auto; padding: 24px; color: var(--text-primary); background: var(--surface-primary); border: 1px solid var(--border-default); border-radius: var(--radius-lg); box-shadow: var(--shadow-dialog); }
+.dialog::backdrop { background: var(--overlay); }
+.dialog h2 { margin: 0; font-size: 20px; }
+.dialog > p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+.detailList { display: grid; gap: 16px; padding: 16px 0; margin: 16px 0; border-top: 1px solid var(--border-default); }
+.detailList dt { font-size: 11px; color: var(--text-secondary); }
+.detailList dd { margin: 5px 0 0; font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
+.detailList small { display: block; margin-top: 5px; color: var(--text-secondary); }
+@media (max-width: 900px) { .generationControls { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .generationControls > button { justify-self: start; grid-column: 1 / -1; } }
+@media (max-width: 560px) { .generationControls { grid-template-columns: minmax(0, 1fr); } .activityRow, .breakRow { grid-template-columns: 52px minmax(0, 1fr); gap: 8px; } .activityBody, .breakRow > div { padding-left: 14px; } .moveControls, .addPanel form { flex-direction: column; align-items: stretch; } .moveControls label, .addPanel label { width: 100%; } }

@@ -1,42 +1,43 @@
-import { ArrowLeft, CalendarDays, MapPin, Users, Wallet } from 'lucide-react';
-import { Link, useParams } from 'react-router-dom';
-import { useTrips } from '../../../app/providers/TripsProvider';
-import { StatusMessage } from '../../../components/ui/StatusMessage';
-import { formatBudget, formatDateRange, tripDuration, tripStatus } from '../utils/tripFormatters';
-import page from './Page.module.css';
+import { TripDetails } from '../components/TripDetails';
+import { useWorkspaceTrip } from '../components/TripWorkspaceLayout';
+import { formatBudget, formatDate, tripDuration } from '../utils/tripFormatters';
 import styles from './TripOverviewPage.module.css';
+import { SelectedStaySummary } from '../../accommodation/components/SelectedStaySummary';
+import { Link } from 'react-router-dom';
+import { calculateBudget, formatMoney } from '../../budget/domain/engine';
+import { PlannedTravelSummary } from '../../long-distance-transport/components/PlannedTravelSummary';
 
 export function TripOverviewPage() {
-  const { tripId } = useParams();
-  const { trips, isLoading, error } = useTrips();
-  const trip = trips.find((item) => item.id === tripId);
-
-  if (isLoading) return <div className={page.page}><p className={page.loading}>Loading trip…</p></div>;
-  if (!trip) return (
-    <div className={page.page}>
-      <Link to="/trips" className={styles.back}><ArrowLeft size={16} /> My Trips</Link>
-      <section className={page.empty}><div className={page.emptyInner}><h1>Trip not found</h1><p>This trip may have been removed, or the link is no longer valid.</p><Link to="/trips" className={page.buttonLink}>Return to My Trips</Link></div></section>
-    </div>
-  );
-
+  const trip = useWorkspaceTrip();
   const days = tripDuration(trip.startDate, trip.endDate);
-  return (
-    <div className={page.page}>
-      <Link to="/trips" className={styles.back}><ArrowLeft size={16} /> My Trips</Link>
-      {error && <div className={styles.alert}><StatusMessage>{error}</StatusMessage></div>}
-      <header className={styles.hero}>
-        <div><span className={styles.status}>{tripStatus(trip)}</span><h1>{trip.title}</h1><p><MapPin size={17} aria-hidden="true" /> {trip.origin} <span>to</span> {trip.destination}</p></div>
-        <Link to="/plan" className={styles.newTripLink}>Plan another trip</Link>
-      </header>
-      <section className={styles.summary} aria-label="Trip summary">
-        <article><CalendarDays size={19} aria-hidden="true" /><div><span>Travel dates</span><strong>{formatDateRange(trip.startDate, trip.endDate)}</strong><small>{days} {days === 1 ? 'day' : 'days'}</small></div></article>
-        <article><Users size={19} aria-hidden="true" /><div><span>Travel party</span><strong>{trip.travelers} {trip.travelers === 1 ? 'traveler' : 'travelers'}</strong><small>Included in this plan</small></div></article>
-        <article><Wallet size={19} aria-hidden="true" /><div><span>Working budget</span><strong>{formatBudget(trip)}</strong><small>Total trip budget</small></div></article>
-      </section>
-      <section className={styles.routeSection} aria-labelledby="route-summary-heading">
-        <div className={styles.sectionTitle}><span>Route summary</span><h2 id="route-summary-heading">From departure to destination</h2></div>
-        <div className={styles.routeLine}><div><span className={styles.node} /><small>Origin</small><strong>{trip.origin}</strong></div><div className={styles.line}><span>{days} {days === 1 ? 'day' : 'days'}</span></div><div><span className={styles.node} /><small>Destination</small><strong>{trip.destination}</strong></div></div>
-      </section>
-    </div>
-  );
+  const budget = calculateBudget(trip);
+  return <div className={styles.overview}>
+    <section className={styles.section} aria-labelledby="essentials-heading">
+      <div className={styles.sectionHeading}><h2 id="essentials-heading">Trip essentials</h2><p>Your route, travel party and dates.</p></div>
+      <dl className={styles.essentials}>
+        <div><dt>From</dt><dd>{trip.origin}</dd></div>
+        <div><dt>Destination</dt><dd>{trip.destination}</dd></div>
+        <div><dt>Travelers</dt><dd>{trip.travelers} {trip.travelers === 1 ? 'traveler' : 'travelers'}</dd></div>
+        <div><dt>Departure</dt><dd>{formatDate(trip.startDate)}</dd></div>
+        <div><dt>Return</dt><dd>{formatDate(trip.endDate)}</dd></div>
+      </dl>
+    </section>
+    <section className={styles.section} aria-labelledby="schedule-heading">
+      <div className={styles.sectionHeading}><h2 id="schedule-heading">Schedule & duration</h2></div>
+      <dl className={styles.duration}><div><dt>Calendar days</dt><dd>{days}</dd></div><div><dt>Accommodation nights</dt><dd>{days - 1}</dd></div></dl>
+    </section>
+    <section className={styles.section} aria-labelledby="budget-heading">
+      <div className={styles.sectionHeading}><h2 id="budget-heading">Total trip budget</h2><p>For {trip.travelers} {trip.travelers === 1 ? 'traveler' : 'travelers'} in total.</p></div>
+      <p className={styles.budget}>{formatBudget(trip)}<span>{trip.budget.currency}</span></p>
+      <p className={styles.budgetContext}>{formatMoney(budget.total, trip.budget.currency)} known cost · {budget.status === 'over' ? `${formatMoney(budget.overBy, trip.budget.currency)} over budget` : `${formatMoney(budget.remaining, trip.budget.currency)} remaining`}{budget.unknownSourceCount > 0 ? ' · incomplete estimate' : ''}</p>
+      <Link className={styles.sectionLink} to={`/trips/${encodeURIComponent(trip.id)}/budget`}>Open Budget</Link>
+    </section>
+    <section className={styles.section} aria-labelledby="preferences-heading">
+      <div className={styles.sectionHeading}><h2 id="preferences-heading">Travel preferences</h2><p>Your preferred stay and ways to explore.</p></div>
+      <TripDetails trip={trip} includeEssentials={false} />
+    </section>
+    <SelectedStaySummary trip={trip} />
+    <PlannedTravelSummary trip={trip} />
+    <footer className={styles.footer}>Saved in this browser<span>Last updated {new Intl.DateTimeFormat(undefined, { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(trip.updatedAt))}</span></footer>
+  </div>;
 }
